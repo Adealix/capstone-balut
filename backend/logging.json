@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {"plain": {"format": "%(asctime)s %(levelname)s %(message)s"}},
+  "handlers": {"file": {"class": "logging.FileHandler", "filename": "../evidence/backend-service.log", "formatter": "plain", "encoding": "utf-8"}},
+  "loggers": {"uvicorn": {"handlers": ["file"], "level": "INFO", "propagate": false}, "uvicorn.error": {"level": "INFO"}, "uvicorn.access": {"handlers": [], "propagate": false}}
+}

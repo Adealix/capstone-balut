@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/app_root" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F4F7F5">
+ <LinearLayout android:layout_width="match_parent" android:layout_height="64dp" android:gravity="center_vertical" android:paddingHorizontal="20dp">
+  <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_egg" android:contentDescription="Balut Companion logo"/>
+  <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:text="Balut Companion" android:textSize="19sp" android:textStyle="bold" android:textColor="#143E35"/>
+  <Button android:id="@+id/alerts_button" android:layout_width="wrap_content" android:layout_height="48dp" android:minWidth="48dp" android:text="Alerts" android:textAllCaps="false"/>
+ </LinearLayout>
+ <TextView android:id="@+id/connection_banner" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingHorizontal="20dp" android:paddingVertical="8dp" android:background="#EAF3ED" android:textColor="#143E35" android:textSize="12sp"/>
+ <FrameLayout android:id="@+id/screen_container" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+ <LinearLayout android:id="@+id/bottom_navigation" android:layout_width="match_parent" android:layout_height="68dp" android:background="#FFFFFF" android:gravity="center" android:orientation="horizontal"/>
+</LinearLayout>

@@ -1,0 +1,458 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Balut Companion — Manual Testing Guide</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7f5;color:#172d28;font:16px/1.7 system-ui,sans-serif}
+main{max-width:1060px;margin:36px auto;background:white;padding:42px;border-radius:12px}
+h1{font-size:32px;line-height:1.25}h2{margin-top:48px;line-height:1.35;padding-top:12px;border-top:2px solid #eaf3ed;scroll-margin-top:20px}
+a{color:#126748}p,li{max-width:90ch}li{margin:8px 0}table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px;border:1px solid #cfddd4}th{background:#eaf3ed}
+pre{overflow:auto;background:#143e35;color:white;padding:18px;border-radius:8px;font-size:14px}code{overflow-wrap:anywhere}
+nav{background:#eaf3ed;padding:20px;border-radius:8px}nav ul{padding-left:22px}nav>ul>li>ul{columns:2;column-gap:24px}
+.intro{color:#5b7068}@media(max-width:700px){main{margin:0;padding:22px;border-radius:0}nav>ul>li>ul{columns:1}table{display:block;overflow:auto}}
+@media print{body{background:white}main{margin:0;padding:0}nav{display:none}h2{break-after:avoid}pre{white-space:pre-wrap;color:black;background:#eee}tr{break-inside:avoid}}
+</style><main><p class="intro">Balut Companion 1.0.0 · Student manual testing</p><nav aria-label="Guide contents"><div class="toc">
+<ul>
+<li><a href="#balut-companion-manual-testing-walkthrough">Balut Companion: manual testing walkthrough</a><ul>
+<li><a href="#how-to-read-this-guide">How to read this guide</a></li>
+<li><a href="#mt-01-start-a-separate-practice-workspace">MT-01 — Start a separate practice workspace</a></li>
+<li><a href="#mt-02-owner-setup-and-login">MT-02 — Owner setup and login</a></li>
+<li><a href="#mt-03-understand-the-five-tabs">MT-03 — Understand the five tabs</a></li>
+<li><a href="#mt-04-test-the-scan-placeholder">MT-04 — Test the Scan placeholder</a></li>
+<li><a href="#mt-05-register-manual-batch-a">MT-05 — Register Manual Batch A</a></li>
+<li><a href="#mt-06-check-registration-validation-and-create-batch-b">MT-06 — Check registration validation and create Batch B</a></li>
+<li><a href="#mt-07-dashboard-and-simulated-controls">MT-07 — Dashboard and simulated controls</a></li>
+<li><a href="#mt-08-move-a-into-c2">MT-08 — Move A into C2</a></li>
+<li><a href="#mt-09-split-a-into-finishing-rows">MT-09 — Split A into finishing rows</a></li>
+<li><a href="#mt-10-reviews-acknowledgment-snooze-and-resolution">MT-10 — Reviews, acknowledgment, snooze and resolution</a></li>
+<li><a href="#mt-11-actual-outcomes-partial-completion-and-archive">MT-11 — Actual outcomes, partial completion and archive</a></li>
+<li><a href="#mt-12-continue-b-through-c2-into-c3">MT-12 — Continue B through C2 into C3</a></li>
+<li><a href="#mt-13-search-filters-and-batch-corrections">MT-13 — Search, filters and batch corrections</a></li>
+<li><a href="#mt-14-physical-tray-inventory">MT-14 — Physical tray inventory</a></li>
+<li><a href="#mt-15-profile-farm-settings-and-notifications">MT-15 — Profile, farm settings and notifications</a></li>
+<li><a href="#mt-16-reports-and-exports">MT-16 — Reports and exports</a></li>
+<li><a href="#mt-17-backup-restore-and-cancel-behavior">MT-17 — Backup, restore and cancel behavior</a></li>
+<li><a href="#mt-18-offline-registration-and-synchronization">MT-18 — Offline registration and synchronization</a></li>
+<li><a href="#mt-19-persistence-and-cancellation">MT-19 — Persistence and cancellation</a></li>
+<li><a href="#mt-20-owner-and-operator-permissions">MT-20 — Owner and Operator permissions</a></li>
+<li><a href="#mt-21-optional-password-change-test-do-this-last">MT-21 — Optional password-change test (do this last)</a></li>
+<li><a href="#mt-22-history-help-and-final-reconciliation">MT-22 — History, help and final reconciliation</a></li>
+<li><a href="#mt-23-what-to-report-as-a-bug">MT-23 — What to report as a bug</a></li>
+<li><a href="#return-to-the-original-demonstration-workspace">Return to the original demonstration workspace</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav><h1 id="balut-companion-manual-testing-walkthrough">Balut Companion: manual testing walkthrough</h1>
+<p>For the delivered Java/XML app version <strong>1.0.0</strong>, Android Studio emulator <strong>capstone-balut</strong>, and the local Python backend. This is a walkthrough for you to execute: the cases below are <strong>Not run by you yet</strong>. Previous automated results remain in VERIFICATION.md.</p>
+<p>Use the steps in order. They deliberately create predictable practice records so that you can check the quantities yourself. Dates and candidate assessments here are artificial test inputs, not recommended incubation or food-handling instructions.</p>
+<h2 id="how-to-read-this-guide">How to read this guide</h2>
+<p>Each case explains the screen's purpose, what to click, and its expected result. A result that differs from the expectation should be recorded in MANUAL-TEST-RESULTS.md with a screenshot and the smallest steps that reproduce it. Do not include passwords, login tokens or your private QA credential file in evidence.</p>
+<p>Some actions are below the visible area. Swipe upward inside the page or dialog to reveal them. Use the page's Back button or Android's Back gesture to return. Selecting a bottom tab opens that tab's main page. Allow a few seconds for a save/refresh; regular visible-app refresh happens approximately every 20 seconds.</p>
+<h2 id="mt-01-start-a-separate-practice-workspace">MT-01 — Start a separate practice workspace</h2>
+<p><strong>Purpose:</strong> Begin with empty test positions without deleting the existing demonstration data.</p>
+<p>The existing default workspace already contains River flock, Finishing sample and other automated-test records, including occupied C1/C2 locations. Do not use those records for this exact sequence.</p>
+<ol>
+<li>Open Android Studio.</li>
+<li>Choose <strong>Open</strong> (or File → Open) and select <strong>D:\capstone-balut\frontend</strong>. Wait for Gradle sync/indexing.</li>
+<li>Select the <code>app</code> run configuration and emulator <strong>capstone-balut</strong> in the toolbar. Start the emulator if necessary, then click the green Run triangle.</li>
+<li>Open a Windows PowerShell window. Paste:</li>
+</ol>
+<pre><code class="language-powershell">powershell -ExecutionPolicy Bypass -File &quot;D:\capstone-balut\tools\Start-Manual-Practice.ps1&quot;
+</code></pre>
+<ol>
+<li>Leave that window open. It runs a simulation API on port <strong>8789</strong>, using <strong>backend\data\manual-tutorial.sqlite3</strong>. It does not replace <strong>simulation.sqlite3</strong>, the existing default workspace.</li>
+<li>If the app is already signed in, open <strong>Profile → Settings &amp; connection → Change workspace / address</strong>. If signed out, tap <strong>Connection settings</strong>.</li>
+<li>Select <strong>simulation</strong> and enter <strong>http://10.0.2.2:8789</strong>. Choose <strong>Save &amp; sign out</strong> or <strong>Save &amp; check</strong>, depending on the screen.</li>
+</ol>
+<p><strong>Expected:</strong> The app connects to a fresh simulation workspace. Its first account screen says <strong>Create the farm Owner</strong>. A simulation label remains visible.</p>
+<p>If port 8789 is already in use by your practice server, leave it running and use it; do not start a second copy. If you need a new empty attempt, stop that practice terminal with Ctrl+C, then run the same command with <code>-Session tutorial2</code>. This creates a different practice database without deleting earlier attempts. You must sign out/reconnect to create or log into the new workspace's Owner. Use one practice session throughout this walkthrough.</p>
+<p>The PowerShell terminal is only for starting/stopping the server, like starting a development server for React. The remaining app tests happen through the emulator UI.</p>
+<h2 id="mt-02-owner-setup-and-login">MT-02 — Owner setup and login</h2>
+<p><strong>Purpose:</strong> Establish who can administer the farm.</p>
+<ol>
+<li>Enter your preferred test display name.</li>
+<li>Use username <strong>practiceowner</strong>.</li>
+<li>Choose and privately save your own password of at least eight characters.</li>
+<li>Tap <strong>Create Owner account</strong>.</li>
+<li>Allow Android notifications if prompted. If a password-manager prompt appears, you may dismiss it; saving the password there is not required by this app.</li>
+</ol>
+<p><strong>Expected:</strong> Home opens and Profile identifies the account as <strong>Owner</strong>. There are no batches yet. Do not load sample farm records; this tutorial supplies its own data.</p>
+<p>If this practice database was used earlier, the app will show Sign in instead. Use the Owner credentials you created for that practice database, or use a new session name as explained above.</p>
+<h2 id="mt-03-understand-the-five-tabs">MT-03 — Understand the five tabs</h2>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>What it should do</th>
+<th>Your first check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Home</td>
+<td>Daily tasks, active counts, due reviews and registration shortcuts</td>
+<td>Zero active eggs on a fresh workspace</td>
+</tr>
+<tr>
+<td>Dashboard</td>
+<td>Compartment readings, occupancy, supported controls and history</td>
+<td>C1-1/C1-2, C2, C3-1/C3-2/C3-3 are visible and empty</td>
+</tr>
+<tr>
+<td>Scan</td>
+<td>Future candling/ML workspace</td>
+<td>ML integration pending and a 6-column × 5-row map</td>
+</tr>
+<tr>
+<td>Batches</td>
+<td>Search/filter and operate batch records</td>
+<td>No active batches yet</td>
+</tr>
+<tr>
+<td>Profile</td>
+<td>Account, settings, reports, trays, accounts, backups, history and help</td>
+<td>Owner administration options are present</td>
+</tr>
+</tbody>
+</table>
+<p>Visit every tab once. Navigation should work without a crash or lost connection. The Dashboard's temperatures/humidity are labeled simulation; they are not measurements from your incubator.</p>
+<h2 id="mt-04-test-the-scan-placeholder">MT-04 — Test the Scan placeholder</h2>
+<ol>
+<li>Open <strong>Scan</strong>.</li>
+<li>Count six columns and five rows. Row labels run A–E and column numbers 1–6.</li>
+<li>Tap <strong>A1</strong>, then <strong>E6</strong>.</li>
+</ol>
+<p><strong>Expected:</strong> Both taps explain that camera/ML integration is pending. There are no claimed predictions, live camera images or detected embryo results. Tap <strong>Open batches for manual review</strong> to confirm its navigation, then return Home.</p>
+<h2 id="mt-05-register-manual-batch-a">MT-05 — Register Manual Batch A</h2>
+<p><strong>Purpose:</strong> Save a collection, its original start time, and its actual C1 position.</p>
+<ol>
+<li>On Home, tap <strong>Register a batch</strong>.</li>
+<li>Enter:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Test input</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch name</td>
+<td>Manual Batch A</td>
+</tr>
+<tr>
+<td>Egg source / supplier</td>
+<td>Practice Farm</td>
+</tr>
+<tr>
+<td>Number of eggs</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Original incubation start</td>
+<td>Seven calendar days ago, at 12:00 AM Manila</td>
+</tr>
+<tr>
+<td>Initial tray position</td>
+<td>C1-1</td>
+</tr>
+<tr>
+<td>Physical carrier tray</td>
+<td>T01</td>
+</tr>
+<tr>
+<td>Notes</td>
+<td>First manual test batch</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Tap the date field to open the date picker, choose the date, then select the time in the time picker. Midnight means <strong>12:00 AM</strong>, not noon.</li>
+<li>Tap <strong>Save batch</strong>.</li>
+<li>Open <strong>Batches → View batch</strong> for Manual Batch A. Write down its generated batch ID and displayed original start time.</li>
+</ol>
+<p><strong>Expected:</strong> Registered 12, active 12, outcomes 0. Age is Day 7 until the next Manila midnight. Dashboard shows C1-1 <strong>12 / 30</strong>. Batch details shows <strong>Physical carrier: T01 · In use</strong> under the C1 group. In <strong>Profile → Physical tray inventory</strong>, scroll to T01: its card shows <strong>Status: In use</strong>, the assigned batch name and location. Use Refresh tray inventory if needed. After the later C2-to-C3 transfer and cleaning steps, T01 should no longer remain In use. The test date is an age-calculation input, not a declaration that every egg is fertile.</p>
+<h2 id="mt-06-check-registration-validation-and-create-batch-b">MT-06 — Check registration validation and create Batch B</h2>
+<ol>
+<li>Open another <strong>Register a batch</strong> form. Fill name <strong>Manual Batch B</strong>, source <strong>Practice Farm</strong>, quantity <strong>6</strong>, original start <strong>yesterday at 12:00 AM Manila</strong>, position <strong>C1-2</strong>, and tray <strong>T02</strong>. Do not save yet.</li>
+<li>Change only quantity to <strong>0</strong>, then try Save. Repeat with <strong>31</strong>. Each must be rejected. Restore quantity <strong>6</strong>.</li>
+<li>Change only the start date to a future date and try Save; it must be rejected. Restore yesterday at midnight.</li>
+<li>Change the position to <strong>C1-1</strong> and try saving. It is occupied by A, so the save must fail without adding B.</li>
+<li>Change the position back to <strong>C1-2</strong>, then save.</li>
+</ol>
+<p><strong>Expected:</strong> Exactly two batches, 18 active eggs total. A has 12 in C1-1; B has 6 in C1-2. T01 and T02 are In use. No extra batches were created by rejected attempts.</p>
+<p>A C1 slot accepts one active carrier group, even when that carrier has fewer than 30 eggs. Having room for more eggs is not the same as having room for a second tray.</p>
+<h2 id="mt-07-dashboard-and-simulated-controls">MT-07 — Dashboard and simulated controls</h2>
+<ol>
+<li>Open <strong>Dashboard → Refresh device status</strong>.</li>
+<li>Confirm C1, C2 and C3 appear with the appropriate positions beneath them.</li>
+<li>Inspect the timestamps. C1/C3 show simulated values; C2 need not show incubation readings.</li>
+<li>Under C1-1, open its turning control, select <strong>Pause turning</strong>, then <strong>Cancel</strong> at confirmation.</li>
+<li>Repeat, confirm Pause, and read the result. Refresh if necessary.</li>
+<li>Confirm <strong>Resume turning</strong> afterward.</li>
+<li>Under C2, try <strong>Candling light on</strong>, then <strong>Candling light off</strong>.</li>
+</ol>
+<p><strong>Expected:</strong> Cancel does not change state. Confirmed actions explicitly report simulated completion. C1-1 changes between Paused and Scheduled. No actual motor or bulb operates, and the Scan tab does not suddenly acquire a camera feed.</p>
+<p>Keep the Dashboard connected for a minute or two, then scroll to Reading history. It should contain samples actually collected since the server started. A short/empty chart immediately after startup is normal. It should not invent earlier history.</p>
+<h2 id="mt-08-move-a-into-c2">MT-08 — Move A into C2</h2>
+<ol>
+<li>Open <strong>Batches → Manual Batch A → View batch</strong>.</li>
+<li>Under its C1-1 group, tap <strong>Record transfer to C2</strong>.</li>
+<li>Leave <strong>Eggs to move = 12</strong> and <strong>Destination = C2</strong>.</li>
+<li>Tap <strong>Confirm transfer</strong>.</li>
+</ol>
+<p><strong>Expected:</strong> A now has 12 eggs in C2; C1-1 becomes empty. Its registered/active quantities and original start time are unchanged. T01 remains In use because its eggs are still on the C2 carrier.</p>
+<p>Now open B and try transferring its six eggs into C2.</p>
+<p><strong>Expected:</strong> C2 is occupied, so B's move is rejected. B stays in C1-2 with six eggs. This is a successful validation test, not an application defect.</p>
+<h2 id="mt-09-split-a-into-finishing-rows">MT-09 — Split A into finishing rows</h2>
+<p><strong>Purpose:</strong> Separate reviewed groups without losing their original batch/date.</p>
+<ol>
+<li>Return to A's C2 group and tap <strong>Review &amp; assign finishing row</strong>.</li>
+<li>Enter quantity <strong>6</strong>, destination <strong>C3-1</strong>, row <strong>A</strong>, assessment <strong>Developing</strong>, intended outcome <strong>Balut production</strong>.</li>
+<li>For <strong>Scheduled human review target</strong>, choose a time five minutes earlier than the current Manila time. If necessary, adjust the date too. This deliberately makes the practice review due; it must remain after A's original start.</li>
+<li>Confirm.</li>
+</ol>
+<p><strong>Expected:</strong> A has six eggs in C2 and six in C3-1 Row A. Total active is still 12 and both retain A's original incubation date.</p>
+<ol>
+<li>From the remaining C2 group, try assigning another six to <strong>C3-1 Row A</strong>.</li>
+<li>The row is full; expect rejection and unchanged quantities.</li>
+<li>Change the destination row to <strong>B</strong>. Choose assessment Developing, intended outcome <strong>Duckling hatching</strong>, and a future practice review target such as tomorrow at 9:00 AM. Confirm.</li>
+</ol>
+<p><strong>Expected:</strong> A now has six in Row A and six in Row B. C2 is empty. T01 becomes <strong>Cleaning</strong> because all eggs left the carrier. The purpose label does not trigger an automatic harvest or hatch. These target times only exercise the app.</p>
+<p>The optional <strong>total days from original start</strong> field computes a review target from A's original date; it does not add those days again after C3 transfer. You can try it, inspect the computed date, then restore the practice target before saving.</p>
+<h2 id="mt-10-reviews-acknowledgment-snooze-and-resolution">MT-10 — Reviews, acknowledgment, snooze and resolution</h2>
+<p>Do this before completing A's eggs.</p>
+<ol>
+<li>Open Home. A's past target should appear under What needs attention.</li>
+<li>Open <strong>Alerts</strong> in the header, or <strong>Open review</strong> from Home.</li>
+<li>Tap <strong>Open batch</strong> on the due reminder. Confirm it opens A, then return to Alerts.</li>
+<li>Record A's current active count: <strong>12</strong>.</li>
+<li>Tap <strong>Acknowledge review</strong>.</li>
+</ol>
+<p><strong>Expected:</strong> The reminder becomes acknowledged, but A remains 12 active. No harvested or removed quantity is created.</p>
+<ol>
+<li>Try <strong>Snooze for one hour</strong> and inspect the displayed snooze time.</li>
+<li>Choose <strong>Resolve reminder</strong> and confirm.</li>
+</ol>
+<p><strong>Expected:</strong> The reminder moves to resolved history. It still does not change egg quantities. Snoozing does not move the incubation start date or the review target itself; it changes reminder handling.</p>
+<h2 id="mt-11-actual-outcomes-partial-completion-and-archive">MT-11 — Actual outcomes, partial completion and archive</h2>
+<ol>
+<li>Open A. In <strong>C3-1 Row A</strong>, tap <strong>Record outcome / removal</strong>.</li>
+<li>Enter quantity <strong>2</strong>, outcome <strong>Harvested</strong>, and confirm.</li>
+</ol>
+<p><strong>Expected:</strong> A = 12 registered = <strong>10 active + 2 outcomes</strong>. Row A has four; Row B has six.</p>
+<ol>
+<li>Try recording five from the four-egg Row A. It must fail without changing counts.</li>
+<li>Record the remaining <strong>4</strong> in Row A as Harvested.</li>
+<li>Record the <strong>6</strong> in Row B as Removed. This is simulation-data cleanup, not an instruction to remove real eggs.</li>
+</ol>
+<p><strong>Expected:</strong> A = 12 registered = <strong>0 active + 12 outcomes</strong> (6 Harvested, 6 Removed). No quantity is negative.</p>
+<ol>
+<li>In Batches, select <strong>Completed</strong>; A should appear before archiving.</li>
+<li>Open A, scroll down and tap <strong>Archive completed batch → Archive</strong>.</li>
+<li>Return to Batches; select <strong>Archived</strong>. A should remain accessible with its history. It should no longer appear under Active.</li>
+</ol>
+<p>An active batch must not be archived. You can check B to confirm it does not offer the completed-batch archive action while its eggs remain active.</p>
+<h2 id="mt-12-continue-b-through-c2-into-c3">MT-12 — Continue B through C2 into C3</h2>
+<ol>
+<li>Open B. Transfer all six from C1-2 into the now-empty C2.</li>
+<li>From B's C2 group, choose <strong>Review &amp; assign finishing row</strong>.</li>
+<li>Assign six eggs to <strong>C3-2 Row A</strong>, human assessment <strong>Non-developing</strong>, purpose <strong>Penoy processing</strong>, and a future practice review target.</li>
+<li>Confirm and inspect the original start date.</li>
+</ol>
+<p><strong>Expected:</strong> B remains six active, now in C3-2 Row A, with the same original date. T02 becomes Cleaning. Both C1 positions and C2 are now empty. A remains archived with 12 outcomes.</p>
+<p>These observations are manual test labels. The app does not verify edibility or predict food safety.</p>
+<h2 id="mt-13-search-filters-and-batch-corrections">MT-13 — Search, filters and batch corrections</h2>
+<ol>
+<li>Open Batches. Search <strong>Manual Batch</strong>, then B's generated batch ID, then <strong>Practice Farm</strong>. Clear the search between checks.</li>
+<li>Try Active, Completed, Archived and All. Active should contain B, Archived should contain A, and All should contain both.</li>
+<li>Open B → <strong>Edit batch details</strong>. Change its notes and source, save, and verify the changes.</li>
+<li>Change its original start to two days ago but leave the correction reason blank. The server should reject it.</li>
+<li>Enter reason <strong>Manual test of date correction</strong>, then save.</li>
+</ol>
+<p><strong>Expected:</strong> The valid correction persists and appears in history. The current age recalculates, but the six eggs stay in the same C3 row. An explicit, logged date correction is different from the system accidentally resetting a date during transfer.</p>
+<h2 id="mt-14-physical-tray-inventory">MT-14 — Physical tray inventory</h2>
+<ol>
+<li>Open <strong>Profile → Physical tray inventory</strong>.</li>
+<li>Confirm T01 and T02 are Cleaning after their C2 eggs have been assigned out; T03 is Available.</li>
+<li>Choose <strong>Update tray availability</strong> for T01 and select Available. Repeat for T02 once you have conceptually completed the practice cleaning check.</li>
+<li>As Owner, register tray <strong>T-MANUAL</strong>.</li>
+<li>Change it to Unavailable, then back to Available.</li>
+</ol>
+<p><strong>Expected:</strong> States persist after leaving and reopening the page. An In use tray does not offer the same free availability change; it is still assigned to active eggs.</p>
+<h2 id="mt-15-profile-farm-settings-and-notifications">MT-15 — Profile, farm settings and notifications</h2>
+<ol>
+<li>Open Profile → <strong>Edit profile / password</strong>.</li>
+<li>Change only the display name to <strong>Practice Owner</strong>. Leave both password fields empty and save.</li>
+<li>Open <strong>Settings &amp; connection</strong>. Change the farm name to <strong>Manual Test Farm</strong>, then tap <strong>Save farm name</strong>. The button shows Saving while the request is pending. On backend success, expect a <strong>Farm name saved.</strong> toast and matching persistent text below the button. A failed save displays an error instead of a success message.</li>
+<li>Return Home/Profile to check the new names.</li>
+<li>In Settings, enable <strong>Local review notifications</strong>.</li>
+<li>Tap <strong>Send test notification</strong>, acknowledge the explanatory dialog, then open the emulator's notification shade.</li>
+</ol>
+<p><strong>Expected:</strong> A notification titled <strong>Test review reminder</strong> appears if Android permission is granted. Tapping it opens the app. For a real saved review reminder, the link is intended to open its associated batch.</p>
+<ol>
+<li>Open <strong>Android notification settings</strong> to inspect the app's permission. If disabled, enable it yourself and retry the test.</li>
+<li>Toggle local reminders off and back on. Existing records/review dates must not disappear.</li>
+<li>Try <strong>Export connection diagnostics</strong>; save the text file through Android's picker.</li>
+</ol>
+<p>Review dates may also produce local notifications while the app is in the background, but Android may delay them. Use the test button to verify the notification path without waiting. No immediate remote equipment push is implemented.</p>
+<h2 id="mt-16-reports-and-exports">MT-16 — Reports and exports</h2>
+<ol>
+<li>Open <strong>Profile → Reports &amp; exports</strong>.</li>
+<li>Choose a start range that includes A's original seven-days-ago date and an end in the future. Tap <strong>Apply date range</strong>.</li>
+<li>Before the later offline-registration test, expect <strong>2 batches, 18 registered, 6 active, 6 Harvested, 6 Removed</strong>.</li>
+<li>Test an end before the start. It should be rejected without replacing the valid range.</li>
+<li>Tap <strong>Export batches as CSV</strong>. Save as <code>manual-test-batches.csv</code> in the emulator's Downloads.</li>
+<li>Tap <strong>Export summary as PDF</strong>. Save as <code>manual-test-report.pdf</code>.</li>
+<li>Open the emulator's Files app → Downloads. Inspect the PDF with an available PDF viewer. Inspect/export the CSV with a text or spreadsheet viewer, or retrieve it using Android Studio's Device Explorer.</li>
+</ol>
+<p><strong>Expected:</strong> Files exist, contain the selected records, and match the displayed totals. Archived A is included in the selected cohort. The report explicitly selects batches by original start date; it is not an event-date-only harvest report.</p>
+<p>Files saved through the emulator picker are in the <strong>virtual phone</strong>, not automatically in Windows Downloads. Device Explorer can retrieve files such as <code>/sdcard/Download/manual-test-report.pdf</code> to the laptop. If a viewer is absent, that is a viewer/environment issue; inspect the saved file through another available tool.</p>
+<h2 id="mt-17-backup-restore-and-cancel-behavior">MT-17 — Backup, restore and cancel behavior</h2>
+<p>Only perform restore against this practice workspace.</p>
+<ol>
+<li>As Owner, choose <strong>Profile → Backup operational records</strong>.</li>
+<li>Save <code>practice-baseline.json</code> in emulator Downloads. Keep this file unchanged.</li>
+<li>Open B and add note <strong>TEMPORARY RESTORE MARKER</strong>; save and verify it appears.</li>
+<li>Open <strong>Profile → Restore backup</strong>, then cancel the file picker. Verify nothing changed.</li>
+<li>Open Restore again, choose <code>practice-baseline.json</code>, and type <strong>RESTORE</strong> in the confirmation field.</li>
+<li>Confirm the restore and refresh.</li>
+</ol>
+<p><strong>Expected:</strong> B's notes return to the backed-up version without the temporary marker. Counts and operational records match the backup. Accounts and sessions are not part of the operational backup; this is not a password-reset mechanism. The database validates the backup before committing replacement.</p>
+<p>Do not choose the original demonstration workspace at port 8787 for this restore test.</p>
+<h2 id="mt-18-offline-registration-and-synchronization">MT-18 — Offline registration and synchronization</h2>
+<p><strong>Precondition:</strong> B is in C3, both C1 positions are empty, and you know which PowerShell window runs the practice server on port 8789.</p>
+<ol>
+<li>In that practice terminal, press <strong>Ctrl+C</strong>. This stops only the practice server.</li>
+<li>In the app, open Dashboard → Refresh device status. Allow the request to fail.</li>
+<li>Check for <strong>Offline / saved records</strong>. Old sensor values must be marked stale/unavailable, rather than presented as current measurements.</li>
+<li>Open Home → Register a batch. Enter <strong>Offline Manual</strong>, quantity <strong>3</strong>, source <strong>Practice Farm</strong>, a valid current/past start, location <strong>C1-1</strong>, carrier <strong>T03</strong>.</li>
+<li>Tap Save batch. When connection fails, select <strong>Keep pending</strong>.</li>
+<li>Verify a pending indicator. The registration has not reserved a confirmed tray position yet.</li>
+<li>Visit Settings to inspect the pending record. Try signing out: it should ask you to synchronize or discard pending registrations first.</li>
+<li>Restart the same practice database in the terminal:</li>
+</ol>
+<pre><code class="language-powershell">powershell -ExecutionPolicy Bypass -File &quot;D:\capstone-balut\tools\Start-Manual-Practice.ps1&quot;
+</code></pre>
+<ol>
+<li>If you originally used a different <code>-Session</code>, supply that same name now. Do not accidentally start a new empty database.</li>
+<li>In Dashboard, tap Refresh. Allow a few seconds for synchronization. If a conflict is reported, inspect it in Settings instead of repeatedly re-registering the batch.</li>
+<li>In Batches, search Offline Manual. Check Dashboard and Settings.</li>
+</ol>
+<p><strong>Expected:</strong> Exactly one new batch with three eggs appears; C1-1 holds three; T03 is In use; the pending list is empty. Global totals are now <strong>21 registered = 9 active + 12 outcomes/removals</strong>, assuming the earlier steps were followed exactly.</p>
+<p>If automatic synchronization cannot finish, <strong>Settings → Synchronize pending registrations</strong> retries the same request ID. Repeated refreshes must not add more copies. Transfers and hardware commands are not queued for surprise execution after reconnecting.</p>
+<h2 id="mt-19-persistence-and-cancellation">MT-19 — Persistence and cancellation</h2>
+<ol>
+<li>Record A/B/Offline Manual counts and IDs.</li>
+<li>Leave the app using Android's Home gesture, reopen it, then repeat by removing it from Recents and launching it again.</li>
+<li>Verify records and the valid login session remain. If Android has expired the session, signing in must restore the server records.</li>
+<li>Open an edit/transfer form and cancel it. Quantities and dates must remain unchanged.</li>
+<li>Enter a registration form and wait past a background refresh while typing; the refresh should not clear your inputs.</li>
+<li>Optionally rotate the emulator and inspect layout, navigation and draft fields. Record any lost input or clipped content as an issue rather than assuming rotation was exhaustively verified already.</li>
+</ol>
+<p>Stopping the backend is not the same as closing the Android app. Reopening the app cannot restart a stopped server.</p>
+<h2 id="mt-20-owner-and-operator-permissions">MT-20 — Owner and Operator permissions</h2>
+<ol>
+<li>While signed in as Owner, open <strong>Profile → Manage Operators → Add Operator</strong>.</li>
+<li>Create username <strong>practiceoperator</strong>, name <strong>Practice Operator</strong>, with a privately saved password of at least eight characters.</li>
+<li>Confirm the Operator appears as Active.</li>
+<li>Sign out. Try an incorrect password; expect rejection. Sign in with the Operator credentials.</li>
+<li>Navigate Home, Dashboard, Scan, Batches, details, settings and reports.</li>
+</ol>
+<p><strong>Expected:</strong> Routine screens work, but Owner-only actions such as Manage Operators, operational backup/restore, registering a new tray and editing the farm name are not offered. Operators may still update routine tray availability and their own profile.</p>
+<ol>
+<li>Sign out and sign back in as Owner.</li>
+<li>In Manage Operators, disable practiceoperator and confirm.</li>
+<li>Sign out and try logging in as that Operator; expect rejection.</li>
+<li>Return as Owner and re-enable the Operator if you want to retain the account for later testing.</li>
+</ol>
+<p>Do not use your personal passwords as test passwords or include them in a bug screenshot.</p>
+<h2 id="mt-21-optional-password-change-test-do-this-last">MT-21 — Optional password-change test (do this last)</h2>
+<ol>
+<li>As Owner, open Edit profile / password.</li>
+<li>Enter an incorrect current password and a valid new password; save. Expect rejection and no successful password change.</li>
+<li>Repeat with the correct current password and a new password of at least eight characters that you save privately.</li>
+</ol>
+<p><strong>Expected:</strong> A successful change requires a new sign-in. The old password fails and the new one succeeds. Existing batch records are unchanged.</p>
+<p>Skip this case if you do not want to change the practice account password yet; mark it Not run, not Pass.</p>
+<h2 id="mt-22-history-help-and-final-reconciliation">MT-22 — History, help and final reconciliation</h2>
+<ol>
+<li>Open <strong>Profile → Activity history</strong>. Inspect registrations, manual transfers, outcomes, corrections and account/configuration changes. Open event details.</li>
+<li>Open A's View activity history and confirm entries refer to A.</li>
+<li>Open <strong>Help &amp; workflow guide</strong> and scroll through every section. Back should return to the app.</li>
+<li>Revisit Home/Dashboard/Batches and reconcile quantities against this guide's ledger.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Checkpoint</th>
+<th>A</th>
+<th>B</th>
+<th>Offline Manual</th>
+<th style="text-align: right;">Total active</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>After registration</td>
+<td>12 in C1-1</td>
+<td>6 in C1-2</td>
+<td>Not created</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr>
+<td>After moving A</td>
+<td>12 in C2</td>
+<td>6 in C1-2</td>
+<td>Not created</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr>
+<td>After splitting A</td>
+<td>6 C3-1 A + 6 C3-1 B</td>
+<td>6 in C1-2</td>
+<td>Not created</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr>
+<td>After first harvest</td>
+<td>4 C3-1 A + 6 C3-1 B; 2 Harvested</td>
+<td>6 in C1-2</td>
+<td>Not created</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr>
+<td>After A completion and B assignment</td>
+<td>A archived; 6 Harvested + 6 Removed</td>
+<td>6 C3-2 A</td>
+<td>Not created</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr>
+<td>After offline sync</td>
+<td>A archived; 12 outcomes/removals</td>
+<td>6 C3-2 A</td>
+<td>3 C1-1</td>
+<td style="text-align: right;">9</td>
+</tr>
+</tbody>
+</table>
+<p>Reports use all selected batches, including archived ones; Home's active total excludes completed/removed eggs. A discrepancy between those two differently scoped figures is not automatically a bug.</p>
+<h2 id="mt-23-what-to-report-as-a-bug">MT-23 — What to report as a bug</h2>
+<p>Use MANUAL-TEST-RESULTS.md. For each problem, record:</p>
+<ol>
+<li>Case ID and app version.</li>
+<li>Your starting batch/location/quantity and whether the server was online.</li>
+<li>The exact clicks and inputs (exclude passwords).</li>
+<li>Expected result from this guide.</li>
+<li>Actual result and whether it repeats.</li>
+<li>Screenshot and, if relevant, Android Studio Logcat filtered to <code>com.capstone.balut</code> or the practice backend error.</li>
+</ol>
+<p>Do not mark tests Pass because a screen opened: check the saved record/count after the operation. Do not assume a failed test is an implementation bug until its preconditions are checked (wrong port, occupied slot, denied permission, stopped server, expired session, missing viewer).</p>
+<h2 id="return-to-the-original-demonstration-workspace">Return to the original demonstration workspace</h2>
+<p>When finished, resolve/discard any remaining practice pending registrations, then use Profile → Settings &amp; connection → Change workspace / address to select simulation at <strong>http://10.0.2.2:8787</strong>. Use the original demonstration Owner credentials if needed; their local location is described in README.md. Stop the practice terminal with Ctrl+C when you no longer need it. The practice database remains saved for later testing.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Android Studio emulator run flow: https://developer.android.com/studio/run/emulator</li>
+<li>The exact app controls and expectations above were checked against the local Java screen files and backend rules. Feature boundaries and prior automated evidence are in VERIFICATION.md.</li>
+</ul></main></html>
